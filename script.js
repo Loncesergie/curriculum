@@ -16,176 +16,136 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Smooth scrolling for anchor links
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80,
+                    top: target.offsetTop - 80,
                     behavior: 'smooth'
                 });
             }
         });
     });
 
-    // Scroll reveal animations
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.section, .hero-content > *');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementPosition < windowHeight - 100) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }
-        });
-    };
-
-    // Set initial state for animated elements
-    document.querySelectorAll('.hero-content > *').forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = `opacity 0.5s ease ${index * 0.2}s, transform 0.5s ease ${index * 0.2}s`;
-    });
-
-    document.querySelectorAll('.section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(50px)';
-        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-    });
-
-    // Trigger animations on load and scroll
-    window.addEventListener('load', animateOnScroll);
-    window.addEventListener('scroll', animateOnScroll);
-
-    // Contact Form Handling
+    // Form submission with GitHub Actions
     const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('form-message');
-    const submitBtn = contactForm?.querySelector('button[type="submit"]');
-
     if (contactForm) {
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Show loading state
-            submitBtn.classList.add('btn--loading');
-            submitBtn.disabled = true;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const formMessage = document.getElementById('form-message');
             
+            // Validate form
+            const name = this.name.value.trim();
+            const email = this.email.value.trim();
+            const message = this.message.value.trim();
+            
+            if (!name || name.length < 2) {
+                showFormMessage(formMessage, 'Veuillez entrer un nom valide', 'error');
+                return;
+            }
+            
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showFormMessage(formMessage, 'Veuillez entrer un email valide', 'error');
+                return;
+            }
+            
+            if (!message || message.length < 10) {
+                showFormMessage(formMessage, 'Le message doit contenir au moins 10 caractères', 'error');
+                return;
+            }
+            
+            // Verify hCaptcha
+            if (window.hcaptcha) {
+                const token = await hcaptcha.getResponse();
+                if (!token) {
+                    showFormMessage(formMessage, 'Veuillez compléter la vérification hCaptcha', 'error');
+                    return;
+                }
+            }
+            
+            // Prepare payload
+            const formData = {
+                name,
+                email,
+                subject: this.subject.value.trim(),
+                message,
+                'h-captcha-response': window.hcaptcha ? await hcaptcha.getResponse() : null
+            };
+            
+            // Send to GitHub Actions
             try {
-                const formData = new FormData(this);
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi...';
                 
-                // Add hCaptcha token if exists
-                if (window.hcaptcha) {
-                    const token = await hcaptcha.getResponse();
-                    if (!token) {
-                        throw new Error('Veuillez compléter la vérification hCaptcha');
-                    }
-                    formData.append('h-captcha-response', token);
-                }
-                
-                // Basic form validation
-                const name = formData.get('name');
-                const email = formData.get('_replyto');
-                const message = formData.get('message');
-                
-                if (!name || name.length < 2) {
-                    throw new Error('Veuillez entrer un nom valide (minimum 2 caractères)');
-                }
-                
-                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    throw new Error('Veuillez entrer une adresse email valide');
-                }
-                
-                if (!message || message.length < 10) {
-                    throw new Error('Votre message doit contenir au moins 10 caractères');
-                }
-                
-                const response = await fetch(this.action, {
+                const response = await fetch('https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/dispatches', {
                     method: 'POST',
-                    body: new URLSearchParams(formData),
                     headers: {
-                        'Accept': 'application/json'
-                    }
+                        'Authorization': 'token YOUR_GITHUB_TOKEN',
+                        'Accept': 'application/vnd.github.everest-preview+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        event_type: 'contact_form',
+                        client_payload: formData
+                    })
                 });
                 
-                const data = await response.json();
-                
-                if (data.errors) {
-                    throw new Error(data.errors.join(', '));
-                }
-                
-                if (!response.ok || !data.success) {
-                    throw new Error(data.message || 'Erreur lors de l\'envoi du message');
-                }
-                
-                showFormMessage('success', 'Message envoyé avec succès !');
-                contactForm.reset();
-                
-                // Reset hCaptcha if exists
-                if (window.hcaptcha) {
-                    hcaptcha.reset();
-                }
-                
-                // Redirect to thank you page if specified
-                const nextPage = this.querySelector('input[name="_next"]')?.value;
-                if (nextPage) {
-                    setTimeout(() => {
-                        window.location.href = nextPage;
-                    }, 1500);
+                if (response.ok) {
+                    showFormMessage(formMessage, 'Message envoyé avec succès!', 'success');
+                    this.reset();
+                    if (window.hcaptcha) hcaptcha.reset();
+                } else {
+                    throw new Error('Erreur lors de l\'envoi');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                showFormMessage('error', error.message || 'Une erreur est survenue');
+                showFormMessage(formMessage, 'Erreur: ' + error.message, 'error');
             } finally {
-                submitBtn.classList.remove('btn--loading');
                 submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span class="btn-text">Envoyer</span><i class="fas fa-paper-plane"></i>';
             }
         });
     }
-
-    // Form message display
-    function showFormMessage(type, message) {
-        if (!formMessage) return;
+    
+    // Helper function to show form messages
+    function showFormMessage(element, message, type) {
+        if (!element) return;
         
-        formMessage.textContent = message;
-        formMessage.className = '';
-        formMessage.classList.add(type);
-        formMessage.style.display = 'block';
+        element.textContent = message;
+        element.className = type;
+        element.style.display = 'block';
         
         setTimeout(() => {
-            formMessage.style.display = 'none';
+            element.style.display = 'none';
         }, 5000);
     }
-
-    // Initialize hCaptcha if loaded
-    if (window.hcaptcha) {
-        hcaptcha.onLoad = function() {
-            hcaptcha.render('h-captcha', {
-                sitekey: 'votre-sitekey',
-                theme: 'light'
-            });
-        };
-    }
-
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-        } else {
-            header.style.background = 'white';
-            header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-        }
+    
+    // Set current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Scroll animations
+    const animateOnScroll = () => {
+        document.querySelectorAll('.section').forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            if (sectionTop < window.innerHeight - 100) {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    // Initialize animations
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
-
-    // Current year in footer
-    document.querySelector('footer p').innerHTML = `&copy; ${new Date().getFullYear()} Tous droits réservés`;
+    
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
 });
