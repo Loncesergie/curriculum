@@ -2,51 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile Navigation
     const burger = document.querySelector('.burger');
     const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-links li');
     
-    burger.addEventListener('click', () => {
-        // Toggle Nav
+    burger.addEventListener('click', function() {
         navLinks.classList.toggle('active');
-        
-        // Burger Animation
-        burger.classList.toggle('toggle');
-        
-        // Animate Links
-        navItems.forEach((link, index) => {
-            if (link.style.animation) {
-                link.style.animation = '';
-            } else {
-                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-            }
-        });
+        burger.classList.toggle('active');
     });
     
-    // Scroll Reveal Animation
-    const sr = ScrollReveal({
-        origin: 'top',
-        distance: '30px',
-        duration: 1000,
-        reset: true
-    });
-    
-    sr.reveal('.hero-content', { delay: 200 });
-    sr.reveal('.about-content', { delay: 200 });
-    sr.reveal('.section-title', { delay: 200 });
-    sr.reveal('.education-card', { interval: 200 });
-    sr.reveal('.skill-card', { interval: 200 });
-    sr.reveal('.cert-card', { interval: 200 });
-    sr.reveal('.ref-card', { interval: 200 });
-    
-    // Header Scroll Effect
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        header.classList.toggle('scrolled', window.scrollY > 50);
-    });
-    
-    // Smooth Scrolling for Anchor Links
+    // Smooth Scrolling for Navigation Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
+            
+            if (this.classList.contains('btn') && !this.getAttribute('download')) {
+                return;
+            }
             
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
@@ -61,50 +30,77 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Close mobile menu if open
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    burger.classList.remove('toggle');
-                    navItems.forEach(link => {
-                        link.style.animation = '';
-                    });
+                    burger.classList.remove('active');
                 }
             }
         });
     });
     
-    // Timeline Animation on Scroll
-    const timelineItems = document.querySelectorAll('.timeline-item');
+    // Scroll Reveal Animation
+    const animateElements = document.querySelectorAll('.animate-card');
     
-    function checkTimeline() {
-        const triggerBottom = window.innerHeight / 5 * 4;
-        
-        timelineItems.forEach(item => {
-            const itemTop = item.getBoundingClientRect().top;
+    function checkScroll() {
+        animateElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
             
-            if (itemTop < triggerBottom) {
-                item.classList.add('visible');
+            if (elementTop < windowHeight - 100) {
+                element.style.animation = `fadeInUp 1s forwards`;
+                element.style.animationDelay = `${element.dataset.delay || '0.2s'}`;
             }
         });
     }
     
-    window.addEventListener('scroll', checkTimeline);
-    checkTimeline(); // Run once on load
+    // Initial check
+    checkScroll();
     
-    // Current Year for Footer
-    document.querySelector('footer p').innerHTML = `&copy; ${new Date().getFullYear()} Tous droits réservés`;
+    // Check on scroll
+    window.addEventListener('scroll', checkScroll);
     
-    // Hero Text Animation
-    const heroText = document.querySelector('.hero h1');
-    const text = heroText.textContent;
-    heroText.textContent = '';
-    
-    let i = 0;
-    function typeWriter() {
-        if (i < text.length) {
-            heroText.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
+    // Header Scroll Effect
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.boxShadow = 'none';
         }
+    });
+    
+    // Skill Bar Animation
+    const skillBars = document.querySelectorAll('.skill-level');
+    
+    function animateSkillBars() {
+        skillBars.forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0';
+            
+            setTimeout(() => {
+                bar.style.width = width;
+            }, 200);
+        });
     }
     
-    // Start animation after a short delay
-    setTimeout(typeWriter, 500);
+    // Intersection Observer for skill bars
+    const skillsSection = document.querySelector('.skills-section');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkillBars();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    if (skillsSection) {
+        observer.observe(skillsSection);
+    }
+    
+    // Current Year for Footer
+    const yearElement = document.querySelector('.footer-bottom');
+    if (yearElement) {
+        const currentYear = new Date().getFullYear();
+        yearElement.innerHTML = yearElement.innerHTML.replace('2023', currentYear);
+    }
 });
