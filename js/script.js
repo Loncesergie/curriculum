@@ -1,12 +1,12 @@
 // Configuration - À remplacer par vos valeurs
 const CONFIG = {
     GITHUB: {
-        TOKEN: '', // À remplacer ou utiliser process.env.GITHUB_TOKEN
-        REPO_OWNER: 'votre-username',
-        REPO_NAME: 'votre-repo'
+        TOKEN: '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', // À remplacer ou utiliser process.env.GITHUB_TOKEN
+        REPO_OWNER: 'sergie-king',
+        REPO_NAME: 'portfolio'
     },
     HCAPTCHA: {
-        SITE_KEY: 'votre-sitekey-hcaptcha'
+        SITE_KEY: '089c50c8-9312-4b12-9fac-00c0e9f6a594'
     },
     CONTACT_EMAIL: 'sergie.king5@gmail.com'
 };
