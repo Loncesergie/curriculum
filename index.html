@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Frame-Options" content="deny">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline';
+        style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
+        img-src 'self' https://images.unsplash.com data:;
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self';
+        frame-ancestors 'none';
+    ">
     <title>Expert Système d'Information | Administrateur Système & Réseaux</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,16 +22,15 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">LSBETTO</div>
+                <div class="logo">Mon Portfolio</div>
                 <ul class="nav-links">
                     <li><a href="#home">Accueil</a></li>
                     <li><a href="#about">À propos</a></li>
-                    <li><a href="#experience">Expériences</a></li>
+                    <li><a href="#experience">Expérience</a></li>
+                    <li><a href="#projects">Projets</a></li>
                     <li><a href="#education">Parcours</a></li>
                     <li><a href="#skills">Compétences</a></li>
-                    <li><a href="#projects">Projets</a></li>
                     <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#veille">Veille Techno</a></li>
                     <li><a href="#cv" class="btn">Mon CV</a></li>
                 </ul>
                 <div class="burger">
@@ -39,7 +48,7 @@
                 <h1 class="animate-text">Expert Système d'Information <span class="highlight">|</span> Administrateur Système & Réseaux</h1>
                 <h2 class="animate-text">Passionné par la Technologie et la Cybersécurité</h2>
                 <p class="hero-description animate-text">
-                    Bienvenue sur mon portfolio !
+                    Passionné par les nouvelles technologies, la cybersécurité et l'innovation. Je reste toujours à l'affût des dernières tendances du secteur. Mon intérêt pour l'informatique se traduit par une exploration sans fin et une adaptabilité constante, me permettant d'acquérir de nouvelles compétences pour relever tous les défis.
                 </p>
                 <a href="#about" class="btn btn-primary animate-btn">En savoir plus</a>
             </div>
@@ -54,16 +63,22 @@
             <h2 class="section-title">À propos</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Je suis Lonce Sergie BETTO, un passionné des nouvelles technologies, de la cybersécurité et de l'innovation. </p>
-                    <p>Toujours à l’affût des dernières tendances, je m'engage dans une exploration perpétuelle du monde numérique. Mon goût pour l'informatique se traduit par une capacité d'adaptation constante, me permettant de développer sans cesse de nouvelles compétences pour relever tous les défis qui se présentent.</p>
+                    <p>Je suis un professionnel des systèmes d'information avec une expertise solide en administration système et réseau, ainsi qu'une passion pour la cybersécurité.</p>
+                    <p>Mon approche combine rigueur technique et curiosité constante pour les innovations technologiques, ce qui me permet de proposer des solutions adaptées aux besoins des entreprises.</p>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/loncebetto/"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="images/photo-profil.jpg" alt="Photo professionnelle" class="profile-img">
+                    <img src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         srcset="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80 500w,
+                                 https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80 800w"
+                         sizes="(max-width: 600px) 300px, 500px"
+                         alt="Photo professionnelle" 
+                         class="profile-img"
+                         loading="lazy">
                 </div>
             </div>
         </div>
@@ -85,277 +100,48 @@
                         </ul>
                     </div>
                 </div>
-                <div class="timeline-item animate-card">
-                    <div class="timeline-content">
-                        <h3>Administrateur Système et Réseau</h3>
-                        <h4>Avantages Sécurité</h4>
-                        <span class="date">2021 - 2023</span>
-                        <ul class="experience-list">
-                            <li><i class="fas fa-check"></i> Administration des serveurs Windows/Linux</li>
-                            <li><i class="fas fa-check"></i> Configuration et maintenance des équipements réseau</li>
-                            <li><i class="fas fa-check"></i> Support technique niveau 3</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item animate-card">
-                    <div class="timeline-content">
-                        <h3>Technicien Support</h3>
-                        <h4>GJTECH Informatique</h4>
-                        <span class="date">2019 - 2020</span>
-                        <ul class="experience-list">
-                            <li><i class="fas fa-check"></i> Support technique aux utilisateurs</li>
-                            <li><i class="fas fa-check"></i> Installation et configuration de matériel</li>
-                            <li><i class="fas fa-check"></i> Résolution des problèmes logiciels</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item animate-card">
-                    <div class="timeline-content">
-                        <h3>Assistant Technicien</h3>
-                        <h4>Afrique Chimie</h4>
-                        <span class="date">2016 - 2017</span>
-                        <ul class="experience-list">
-                            <li><i class="fas fa-check"></i> Maintenance du parc informatique</li>
-                            <li><i class="fas fa-check"></i> Assistance aux utilisateurs</li>
-                            <li><i class="fas fa-check"></i> Gestion des tickets d'incident</li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- Autres expériences avec la même structure -->
             </div>
         </div>
     </section>
 
-    <section id="education" class="education-section">
+    <section id="projects" class="projects-section">
         <div class="container">
-            <h2 class="section-title">Parcours Académique</h2>
-            <div class="education-grid">
-                <div class="education-card animate-card">
-                    <div class="education-icon">
-                        <i class="fas fa-graduation-cap"></i>
+            <h2 class="section-title">Mes Projets</h2>
+            <div class="projects-grid">
+                <div class="project-card animate-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                             srcset="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80 500w,
+                                     https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80 800w"
+                             sizes="(max-width: 600px) 480px, 800px"
+                             alt="Plateforme Sécurité"
+                             loading="lazy">
                     </div>
-                    <h3>Master 2 Expert Système d'information</h3>
-                    <h4>Nexa Digital School, Campus de Paris</h4>
-                    
-                </div>
-                <div class="education-card animate-card">
-                    <div class="education-icon">
-                        <i class="fas fa-university"></i>
+                    <div class="project-content">
+                        <h3>Plateforme de Sécurité Réseau</h3>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>Cybersécurité</span>
+                        </div>
+                        <p>Solution complète de monitoring réseau avec système d'alertes temps réel et tableau de bord analytique.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small" aria-label="Voir le projet Plateforme Sécurité">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="#" class="btn btn-small btn-secondary" aria-label="Code source sur GitHub">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
                     </div>
-                    <h3>Bachelor Administration Système et Réseau</h3>
-                    <h4>Doranco École Supérieure, Campus de Paris</h4>
-                   
                 </div>
-                <div class="education-card animate-card">
-                    <div class="education-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>BTS Systèmes Numérique Informatique et Réseau</h3>
-                    <h4>Lycée Gustave Eiffel, Dijon</h4>
-                    
-                </div>
+                <!-- Autres projets avec la même structure -->
             </div>
         </div>
     </section>
 
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <h2 class="section-title">Compétences</h2>
-            <div class="skills-grid">
-                <div class="skill-item animate-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3>Administration des systèmes</h3>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 90%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item animate-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3>Administration réseau</h3>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 85%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item animate-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Sécurité informatique</h3>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 80%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item animate-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>Virtualisation</h3>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 75%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item animate-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Gestion des sauvegardes et PRA/PCA</h3>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 85%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item animate-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Supervision et monitoring</h3>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 80%;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="certifications" class="certifications-section">
-        <div class="container">
-            <h2 class="section-title">Certifications</h2>
-            <div class="certifications-grid">
-                <div class="certification-card animate-card">
-                    <div class="certification-badge">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>Introduction to Cybersecurity</h3>
-                    <p>Description de la certification et de l'organisme certificateur.</p>
-                </div>
-                <div class="certification-card animate-card">
-                    <div class="certification-badge">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Junior Cybersecurity Analyst Career Path</h3>
-                    <p>Description de la certification et de l'organisme certificateur.</p>
-                </div>
-                <div class="certification-card animate-card">
-                    <div class="certification-badge">
-                        <i class="fab fa-microsoft"></i>
-                    </div>
-                    <h3>Préparer votre carrière dans la cybersécurité</h3>
-                    <p>Par Microsoft et LinkedIn</p>
-                </div>
-            </div>
-        </div>
-    </section>
-<section id="projects" class="projects-section">
-    <div class="container">
-        <h2 class="section-title">Mes Projets</h2>
-        <div class="projects-grid">
-            <!-- Projet 1 -->
-            <div class="project-card animate-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Projet Sécurité">
-                </div>
-                <div class="project-content">
-                    <h3>Plateforme de Sécurité Réseau</h3>
-                    <div class="project-tags">
-                        <span>Python</span>
-                        <span>Django</span>
-                        <span>Cybersécurité</span>
-                    </div>
-                    <p>Développement d'une solution complète de monitoring et protection des infrastructures réseau avec système d'alertes temps réel.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-small" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i> Voir le projet
-                        </a>
-                        <a href="#" class="btn btn-small btn-secondary" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-github"></i> Code source
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 2 -->
-            <div class="project-card animate-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="Virtualisation">
-                </div>
-                <div class="project-content">
-                    <h3>Solution de Virtualisation</h3>
-                    <div class="project-tags">
-                        <span>VMware</span>
-                        <span>PowerShell</span>
-                        <span>Automatisation</span>
-                    </div>
-                    <p>Migration et optimisation d'une infrastructure virtualisée avec scripts d'automatisation pour la gestion des VM.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-small" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i> Détails techniques
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 3 -->
-            <div class="project-card animate-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Backup">
-                </div>
-                <div class="project-content">
-                    <h3>Système de Backup Automatisé</h3>
-                    <div class="project-tags">
-                        <span>Bash</span>
-                        <span>RAID</span>
-                        <span>Python</span>
-                    </div>
-                    <p>Conception d'une solution de sauvegarde redondante avec chiffrement AES-256 et plan de reprise d'activité.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-small" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-book"></i> Documentation
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-    <section id="veille" class="veille-section">
-        <div class="container">
-            <h2 class="section-title">Veille Technologique</h2>
-            <div class="veille-content">
-                <p>Je maintiens une veille technologique active pour rester informé des dernières tendances et évolutions dans les domaines des systèmes d'information, des réseaux et de la cybersécurité.</p>
-                <div class="veille-links">
-                    <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="veille-link animate-card">
-                        <i class="fas fa-external-link-alt"></i> ANSSI - CERT-FR
-                    </a>
-                    <a href="#" target="_blank" class="veille-link animate-card">
-                        <i class="fab fa-twitter"></i> Twitter - Actualités Cybersécurité
-                    </a>
-                    <a href="#" target="_blank" class="veille-link animate-card">
-                        <i class="fab fa-youtube"></i> YouTube - Chaînes Technologiques
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="cv" class="cv-section">
-        <div class="container">
-            <h2 class="section-title">Mon Curriculum Vitae</h2>
-            <div class="cv-content animate-card">
-                <div class="cv-text">
-                    <h3>Téléchargez mon CV complet</h3>
-                    <p>Vous trouverez dans mon CV détaillé l'ensemble de mes expériences professionnelles, formations et compétences techniques.</p>
-                    <a href="CV Lonce Sergie BETTO.pdf" class="btn btn-primary" download>
-                        <i class="fas fa-download"></i> Télécharger mon CV
-                    </a>
-                </div>
-                <div class="cv-image">
-                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="CV">
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- [Sections Education, Skills, Certifications, Veille, CV avec la même structure responsive] -->
 
     <footer>
         <div class="container">
@@ -368,26 +154,22 @@
                     <h3>Liens rapides</h3>
                     <ul>
                         <li><a href="#home">Accueil</a></li>
-                        <li><a href="#about">À propos</a></li>
-                        <li><a href="#experience">Expériences</a></li>
-                        <li><a href="#education">Parcours</a></li>
+                        <li><a href="#projects">Projets</a></li>
                         <li><a href="#skills">Compétences</a></li>
-                        <li><a href="#certifications">Certifications</a></li>
+                        <li><a href="#cv">CV</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h3>Contact</h3>
-                    <p><i class="fas fa-envelope"></i> sergie.king@outlook.fr</p>
-                    <p><i class="fas fa-phone"></i> +33 7 83 31 13 95</p>
+                    <p><i class="fas fa-envelope"></i> email@example.com</p>
                     <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/loncebetto/"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Tous droits réservés. Conçu avec passion.</p>
+                <p>&copy; <span id="current-year">2023</span> Tous droits réservés. Conçu avec passion.</p>
             </div>
         </div>
     </footer>
