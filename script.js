@@ -5,21 +5,45 @@ document.addEventListener('DOMContentLoaded', function() {
     const navItems = document.querySelectorAll('.nav-links li');
     
     burger.addEventListener('click', () => {
+        // Toggle Nav
         navLinks.classList.toggle('active');
         
-        // Burger animation
+        // Burger Animation
         burger.classList.toggle('toggle');
-    });
-    
-    // Close mobile menu when clicking a link
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            burger.classList.remove('toggle');
+        
+        // Animate Links
+        navItems.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            }
         });
     });
     
-    // Smooth scrolling for anchor links
+    // Scroll Reveal Animation
+    const sr = ScrollReveal({
+        origin: 'top',
+        distance: '30px',
+        duration: 1000,
+        reset: true
+    });
+    
+    sr.reveal('.hero-content', { delay: 200 });
+    sr.reveal('.about-content', { delay: 200 });
+    sr.reveal('.section-title', { delay: 200 });
+    sr.reveal('.education-card', { interval: 200 });
+    sr.reveal('.skill-card', { interval: 200 });
+    sr.reveal('.cert-card', { interval: 200 });
+    sr.reveal('.ref-card', { interval: 200 });
+    
+    // Header Scroll Effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    
+    // Smooth Scrolling for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -33,53 +57,54 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
                 });
+                
+                // Close mobile menu if open
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    burger.classList.remove('toggle');
+                    navItems.forEach(link => {
+                        link.style.animation = '';
+                    });
+                }
             }
         });
     });
     
-    // Scroll animations
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.fade-in');
+    // Timeline Animation on Scroll
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    function checkTimeline() {
+        const triggerBottom = window.innerHeight / 5 * 4;
         
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
+        timelineItems.forEach(item => {
+            const itemTop = item.getBoundingClientRect().top;
             
-            if (elementPosition < windowHeight - 100) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
+            if (itemTop < triggerBottom) {
+                item.classList.add('visible');
             }
         });
-    };
+    }
     
-    // Set initial state for animated elements
-    document.querySelectorAll('.fade-in').forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
+    window.addEventListener('scroll', checkTimeline);
+    checkTimeline(); // Run once on load
     
-    // Run once on page load
-    animateOnScroll();
+    // Current Year for Footer
+    document.querySelector('footer p').innerHTML = `&copy; ${new Date().getFullYear()} Tous droits réservés`;
     
-    // Then run on scroll
-    window.addEventListener('scroll', animateOnScroll);
+    // Hero Text Animation
+    const heroText = document.querySelector('.hero h1');
+    const text = heroText.textContent;
+    heroText.textContent = '';
     
-    // Active nav link on scroll
-    const sections = document.querySelectorAll('section');
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            heroText.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50);
+        }
+    }
     
-    window.addEventListener('scroll', () => {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (pageYOffset >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navItems.forEach(item => {
-            item.querySelector('a').classList.remove('active');
-            if (item.querySelector('
+    // Start animation after a short delay
+    setTimeout(typeWriter, 500);
+});
