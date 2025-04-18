@@ -1,85 +1,346 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio | Expert Système d'Information</title>
-  <link rel="stylesheet" href="css/style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert SI | Admin Système & Réseaux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Expert Système d'Information | Administrateur Système & Réseaux | Passionné par la Technologie et la Cybersécurité</h1>
-  </header>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Expert<span>SI</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#experience">Expérience</a></li>
+                    <li><a href="#education">Parcours</a></li>
+                    <li><a href="#skills">Compétences</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#veille">Veille techno</a></li>
+                    <li><a href="#cv" class="btn">Mon CV</a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-  <nav>
-    <ul>
-      <li><a href="#experience">Expérience</a></li>
-      <li><a href="#parcours">Parcours</a></li>
-      <li><a href="#competences">Compétences</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#veille">Veille Technologique</a></li>
-      <li><a href="#cv">CV</a></li>
-    </ul>
-  </nav>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Expert Système d'Information</h1>
+                <h2>Administrateur Système & Réseaux</h2>
+                <p class="tagline">Passionné par la Technologie et la Cybersécurité</p>
+                <div class="hero-banner">
+                    <p>Passionné par les nouvelles technologies, la cybersécurité et l'innovation. Je reste toujours à l'affût des dernières tendances du secteur. Mon intérêt pour l'informatique se traduit par une exploration sans fin et une adaptabilité constante, me permettant d'acquérir de nouvelles compétences pour relever tous les défis.</p>
+                </div>
+                <a href="#contact" class="btn btn-primary">Me contacter</a>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper">
+                    <div class="tech-icons">
+                        <i class="fas fa-server"></i>
+                        <i class="fas fa-network-wired"></i>
+                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="experience" class="fade-in">
-    <h2>Expérience</h2>
-    <ul>
-      <li>Administrateur SI, Keolis Perpignan Méditerranée</li>
-      <li>Administrateur Système et Réseau, Avantages Sécurité</li>
-      <li>Technicien Support, GJTECH Informatique</li>
-      <li>Assistant Technicien, Afrique Chimie</li>
-    </ul>
-  </section>
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">À propos</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Expert en systèmes d'information avec une spécialisation en administration système et réseau, ainsi qu'une passion pour la cybersécurité. Ma carrière est guidée par une curiosité incessante pour les innovations technologiques et une volonté de sécuriser les infrastructures informatiques.</p>
+                    <p>Je combine expertise technique et vision stratégique pour concevoir, implémenter et maintenir des solutions informatiques robustes et sécurisées.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h3>5+</h3>
+                        <p>Années d'expérience</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>10+</h3>
+                        <p>Projets réalisés</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Engagement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="parcours" class="fade-in">
-    <h2>Parcours</h2>
-    <ul>
-      <li>Nexa Digit School – Master 2 Expert Système d'Information</li>
-      <li>Doranco Ecole Sup – Bachelor Administration Système et Réseau</li>
-      <li>Lycée Gustave Eiffel – BTS Systèmes Numériques Informatique et Réseau</li>
-      <li>IUT Carcassonne – Statistique Informatique Décisionnelle</li>
-    </ul>
-  </section>
+    <section id="experience" class="section experience">
+        <div class="container">
+            <h2 class="section-title">Expérience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Administrateur SI</h3>
+                        <h4>Keolis Perpignan Mediterranee</h4>
+                        <span class="date">2022 - Présent</span>
+                        <p>Gestion de l'infrastructure système, mise en place de solutions de virtualisation, supervision des réseaux et sécurisation des accès.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Administrateur Système et Réseau</h3>
+                        <h4>Avantages Sécurité</h4>
+                        <span class="date">2020 - 2022</span>
+                        <p>Administration des serveurs Windows/Linux, gestion des sauvegardes, mise en place de politiques de sécurité et support technique avancé.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Technicien Support</h3>
+                        <h4>GJTECH Informatique</h4>
+                        <span class="date">2018 - 2020</span>
+                        <p>Support technique aux utilisateurs, maintenance matérielle et logicielle, déploiement de postes de travail et assistance réseau.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Assistant Technicien</h3>
+                        <h4>Afrique Chimie</h4>
+                        <span class="date">2017 - 2018</span>
+                        <p>Première expérience professionnelle avec installation de postes, câblage réseau et assistance aux utilisateurs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="competences" class="fade-in">
-    <h2>Compétences</h2>
-    <ul>
-      <li>Administration des systèmes</li>
-      <li>Administration réseau</li>
-      <li>Sécurité informatique</li>
-      <li>Virtualisation</li>
-      <li>Gestion des sauvegardes et de la reprise après sinistre (PRA/PCA)</li>
-      <li>Supervision et monitoring</li>
-    </ul>
-  </section>
+    <section id="education" class="section education">
+        <div class="container">
+            <h2 class="section-title">Parcours académique</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Master 2 Expert Système d'information</h3>
+                    <h4>Nexa Digit School</h4>
+                    <span class="date">2021 - 2022</span>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Bachelor Administration Système et Réseau</h3>
+                    <h4>Doranco Ecole Sup</h4>
+                    <span class="date">2019 - 2021</span>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>BTS Systèmes Numérique Informatique et Réseau</h3>
+                    <h4>Lycée Gustave Eiffel</h4>
+                    <span class="date">2017 - 2019</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="certifications" class="fade-in">
-    <h2>Certifications</h2>
-    <ul>
-      <li>Introduction to Cybersecurity</li>
-      <li>Junior Cybersecurity Analyst Career Path</li>
-      <li>Préparer votre carrière dans la cybersécurité (Microsoft & LinkedIn)</li>
-    </ul>
-  </section>
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Administration des systèmes</h3>
+                    <p>Windows Server, Linux, Active Directory, GPO, DNS, DHCP</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Administration réseau</h3>
+                    <p>TCP/IP, VLAN, VPN, Routage, Switching, Pare-feu</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Sécurité informatique</h3>
+                    <p>Politiques de sécurité, Pentesting, SIEM, MFA, Chiffrement</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Virtualisation</h3>
+                    <p>VMware, Hyper-V, Proxmox, Conteneurs Docker</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Gestion des sauvegardes et PRA/PCA</h3>
+                    <p>Veeam, Bacula, Plan de reprise d'activité</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Supervision et monitoring</h3>
+                    <p>Zabbix, PRTG, Grafana, Nagios</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="veille" class="fade-in">
-    <h2>Veille Technologique</h2>
-    <ul>
-      <li><a href="https://www.cert.ssi.gouv.fr/" target="_blank">CERT-FR</a></li>
-      <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-      <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
-    </ul>
-  </section>
+    <section id="certifications" class="section certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-list">
+                <div class="certification-item">
+                    <div class="certification-badge">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>Introduction to Cybersecurity</h3>
+                        <p>Fondamentaux de la cybersécurité, menaces et bonnes pratiques</p>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-badge">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>Junior Cybersecurity Analyst Career Path</h3>
+                        <p>Parcours complet pour analyste en cybersécurité débutant</p>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-badge">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>Préparer votre carrière dans la cybersécurité</h3>
+                        <p>Formation Microsoft et LinkedIn sur les carrières en sécurité</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="cv" class="fade-in center">
-    <a href="cv.pdf" class="cv-button" target="_blank">📄 Cliquez ici pour accéder à mon CV</a>
-  </section>
+    <section id="veille" class="section veille">
+        <div class="container">
+            <h2 class="section-title">Veille technologique</h2>
+            <div class="veille-content">
+                <p>Je maintiens une veille technologique active pour rester informé des dernières tendances et menaces en cybersécurité et en administration système/réseau.</p>
+                <div class="veille-sources">
+                    <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="veille-source">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>ANSSI - CERT-FR</span>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="veille-source">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter - Réseau de professionnels</span>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="veille-source">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube - Chaînes spécialisées</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 - Ton Nom. Tous droits réservés.</p>
-  </footer>
+    <section id="cv" class="section cv-download">
+        <div class="container">
+            <div class="cv-content">
+                <h2>Mon Curriculum Vitae</h2>
+                <p>Vous pouvez télécharger une version PDF de mon CV complet pour plus de détails sur mon parcours professionnel.</p>
+                <a href="#" class="btn btn-primary btn-large">
+                    <i class="fas fa-download"></i> Télécharger mon CV
+                </a>
+            </div>
+        </div>
+    </section>
 
-  <script src="js/script.js"></script>
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@expertsi.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+33 6 12 34 56 78</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Perpignan, France</span>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Sujet">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Votre message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Expert SI</h3>
+                    <p>Administrateur Système & Réseaux passionné par la technologie et la cybersécurité.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#experience">Expérience</a></li>
+                        <li><a href="#skills">Compétences</a></li>
+                        <li><a href="#cv">Mon CV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Réseaux sociaux</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Expert Système d'Information. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
