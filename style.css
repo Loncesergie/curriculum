@@ -812,3 +812,46 @@ footer {
         margin-top: 30px;
     }
 }
+/* Experience List Styles */
+.experience-list {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.experience-list li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+    line-height: 1.6;
+}
+
+.experience-list i {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+/* Timeline adjustments for new content */
+.timeline-content {
+    padding: 25px;
+}
+
+.timeline-content h3 {
+    margin-bottom: 5px;
+}
+
+.timeline-content h4 {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+.timeline-content .date {
+    display: block;
+    margin-bottom: 15px;
+    color: var(--text-light);
+    font-style: italic;
+    font-size: 0.9rem;
+}
