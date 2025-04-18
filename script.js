@@ -8,14 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
         burger.classList.toggle('active');
     });
     
-    // Smooth Scrolling for Navigation Links
+    // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            if (this.classList.contains('btn') && !this.getAttribute('download')) {
-                return;
-            }
             
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
@@ -27,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth'
                 });
                 
-                // Close mobile menu if open
+                // Close mobile menu
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                     burger.classList.remove('active');
@@ -51,56 +47,60 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initial check
-    checkScroll();
-    
-    // Check on scroll
-    window.addEventListener('scroll', checkScroll);
-    
-    // Header Scroll Effect
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-        } else {
-            header.style.boxShadow = 'none';
-        }
-    });
-    
-    // Skill Bar Animation
-    const skillBars = document.querySelectorAll('.skill-level');
-    
-    function animateSkillBars() {
-        skillBars.forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0';
-            
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 200);
-        });
-    }
-    
-    // Intersection Observer for skill bars
-    const skillsSection = document.querySelector('.skills-section');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateSkillBars();
-                observer.unobserve(entry.target);
+    // Projects Layout Optimizer
+    function optimizeProjectsLayout() {
+        const projectsSection = document.getElementById('projects');
+        if (!projectsSection) return;
+
+        const projectCards = document.querySelectorAll('.project-card');
+        const screenWidth = window.innerWidth;
+
+        projectCards.forEach(card => {
+            if (screenWidth < 576) {
+                card.style.maxWidth = '95%';
+            } else if (screenWidth < 768) {
+                card.style.maxWidth = '100%';
+            } else {
+                card.style.maxWidth = '';
             }
         });
-    }, { threshold: 0.5 });
-    
-    if (skillsSection) {
-        observer.observe(skillsSection);
     }
-    
-    // Current Year for Footer
-    const yearElement = document.querySelector('.footer-bottom');
-    if (yearElement) {
-        const currentYear = new Date().getFullYear();
-        yearElement.innerHTML = yearElement.innerHTML.replace('2023', currentYear);
+
+    // Current Year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Event Listeners
+    window.addEventListener('load', function() {
+        checkScroll();
+        optimizeProjectsLayout();
+        
+        // Force HTTPS
+        if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost') {
+            window.location.href = 'https:' + window.location.href.substring(5);
+        }
+    });
+
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('resize', debounce(function() {
+        checkScroll();
+        optimizeProjectsLayout();
+    }, 100));
+
+    // Debounce function
+    function debounce(func, wait) {
+        let timeout;
+        return function() {
+            const context = this, args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
     }
+
+    // External links protection
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+        if (!link.href.includes(window.location.hostname)) {
+            link.setAttribute('rel', 'noopener noreferrer');
+            link.setAttribute('target', '_blank');
+        }
+    });
 });
